@@ -12,6 +12,8 @@
     "debug": "~2.2.0",
     "ejs": "~2.4.1",
     "express": "~4.13.4",
+    "express-load": "^1.1.15",
+    "express-session": "^1.14.2",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0"
   }
