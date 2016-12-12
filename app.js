@@ -7,17 +7,21 @@ const bodyParser = require('body-parser');
 
 const load = require('express-load');
 const app = express();
+const methodOverride = require('method-override')
 
 // view engine setup
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.use(cookieParser('ntalk'));
-app.use(session());
-// app.use(express.json());
+app.use(session({
+                 secret: 'homem avestruz', 
+                 resave: true, 
+                 saveUninitialized: true
+                }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.urlencoded());
+app.use(methodOverride());
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
