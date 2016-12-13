@@ -4,12 +4,13 @@
 </header>
 <section>
     <form action="/contato/<%- id %>" method="post">
-        <input type="hidden" name="_method" value="put">
+        <input type="hidden" name="_method" value="put" />
         <label for="nome">Nome:</label>
         <input type="text" name="contato[nome]" value="<%- contato.nome %>">
         <label for="email">E-mail:</label>
         <input type="text" name="contato[email]" value="<%- contato.email %>">
-        <button type="submit">Atualizar</button>
+        <input type="submit" value="put">
+        <!--<button type="submit" value="put">Atualizar</button>-->
     </form>
 </section>
 <% include ../exit %>

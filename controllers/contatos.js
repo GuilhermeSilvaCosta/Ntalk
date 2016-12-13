@@ -23,16 +23,17 @@ module.exports = function(app){
         edit: function(req, res){
             const id = req.params.id;
             const usuario = req.session.usuario;
-            const contato = usario.contatos[id];
+            const contato = usuario.contatos[id];
             const params = {usuario: usuario,
                             contato: contato,
-                            id: id};
+                            id: id};            
             res.render('contatos/edit', params);
         },
-        update: function(req, res){
+        update: function(req, res){    
+            console.log('aki sim');                    
             const contato = req.body.contato;
             let usuario = req.session.usuario;
-            usuario.conatos[req.params.id] = contato;
+            usuario.contatos[req.params.id] = contato;
             res.redirect('/contatos');
         },
         destroy: function(req, res){

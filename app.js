@@ -7,7 +7,8 @@ const bodyParser = require('body-parser');
 
 const load = require('express-load');
 const app = express();
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const error = require('./middleware/error');
 
 // view engine setup
 app.set('views', __dirname + '/views');
@@ -19,6 +20,7 @@ app.use(session({
                  resave: true, 
                  saveUninitialized: true
                 }));
+              
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
@@ -26,6 +28,9 @@ app.use(methodOverride());
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(__dirname + '/public'));
+
+// app.use(error.notFound);
+// app.use(error.serverError);
 
 // app.use('/', routes.index);
 // app.use('/usuarios', routes.user.index);

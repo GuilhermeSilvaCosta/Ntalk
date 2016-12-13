@@ -1,6 +1,5 @@
 module.exports = function(app){
     // const Usuario = app.models.usuario;
-
     const HomeController = {
         index: function(req, res){
             res.render('home/index');
