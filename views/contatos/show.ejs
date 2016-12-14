@@ -3,8 +3,7 @@
     <h2>Ntalk - Dados do contato</h2>
 </header>
 <section>
-    <form action="/contato/<%- id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
+    <form action="/contato/<%- id %>?_method=delete" method="post">
         <p><label for="nome">Nome:</label><%- contato.nome %></p>
         <p><label for="nome">E-mail:</label><%- contato.email %></p>
         <p>

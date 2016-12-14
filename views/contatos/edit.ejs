@@ -3,14 +3,12 @@
     <h2>Ntalk - Editar contato</h2>
 </header>
 <section>
-    <form action="/contato/<%- id %>" method="post">
-        <input type="hidden" name="_method" value="put" />
+    <form action="/contato/<%- id %>?_method=put" method="post">
         <label for="nome">Nome:</label>
         <input type="text" name="contato[nome]" value="<%- contato.nome %>">
         <label for="email">E-mail:</label>
         <input type="text" name="contato[email]" value="<%- contato.email %>">
-        <input type="submit" value="put">
-        <!--<button type="submit" value="put">Atualizar</button>-->
+        <button type="submit">Atualizar</button>
     </form>
 </section>
 <% include ../exit %>
