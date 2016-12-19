@@ -9,10 +9,8 @@ module.exports = function(app){
             const nome = req.body.usuario.nome;
             if (email && nome){
                 var usuario = req.body.usuario;
-                usuario['contatos'] = [];
-                console.log('1 ',req.session.usuario);                
+                usuario['contatos'] = [];                
                 req.session.usuario = usuario;                
-                console.log('2 ',req.session.usuario);
                 res.redirect('/contatos');
             }else{
                 res.redirect('/');
