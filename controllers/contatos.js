@@ -1,46 +1,64 @@
 'use strict';
 
+const showEdit = (req, res, acao) =>{
+    const _id = req.session.usuario._id;
+    Usuario.findById(_id, function(err, usuario){
+        const contatoID = req.params.id;
+        const contato = usuario.contatos.id(contatoID);
+        const resultado = {contato: contato};
+        res.render('contatos/'+acao, resultado);
+    });
+}
+
 module.exports = function(app){
+    const Usuario = app.models.usuario;
     const ContatoController = {
         index: function(req, res){
-            const usuario = req.session.usuario;
-            const contatos = usuario.contatos;
-            const params = {usuario: usuario, contatos: contatos};
-            res.render('contatos/index', params);
+            const _id = req.session.usuario._id;
+            Usuario.findById(_id, function(erro, usuario){
+                const contatos = usuario.contatos;
+                const resultado = {contatos: contatos};
+                res.render('contatos/index', resultado);
+            });
         },
         create: function(req, res){
-            const contato = req.body.contato;
-            const usuario = req.session.usuario;
-            usuario.contatos.push(contato);
-            res.redirect('/contatos');
+            const _id = req.session.usuario._id;
+            Usuario.findById(_id, function(erro, usuario){
+                const contato = req.body.contato;
+                const contatos = usuario.contatos;
+                contatos.push(contato);
+                usuario.save(function(){
+                    res.redirect('/contatos');
+                });
+            });
         },
         show: function(req, res){
-            const id = req.params.id;
-            const contato = req.session.usuario.contatos[id];
-            const params = {contato: contato, id: id};
-            res.render('contatos/show', params);
+            showEdit(req, res, 'show');
         },
         edit: function(req, res){
-            const id = req.params.id;
-            const usuario = req.session.usuario;
-            const contato = usuario.contatos[id];
-            const params = {usuario: usuario,
-                            contato: contato,
-                            id: id};            
-            res.render('contatos/edit', params);
+            showEdit(req, res, 'edit');
         },
-        update: function(req, res){    
-            console.log('aki sim');                    
-            const contato = req.body.contato;
-            let usuario = req.session.usuario;
-            usuario.contatos[req.params.id] = contato;
-            res.redirect('/contatos');
+        update: function(req, res){
+            const _id = req.session.usuario._id;
+            Usuario.findById(_id, function(erro, usuario){
+                const contatoID = req.params.id;
+                const contato = usuarios.contatos.id(contatoID);
+                contato.nome = req.body.contato.nome;
+                contato.email = req.body.contato.email;
+                usuario.save(function(){
+                    res.redirect('/contatos');
+                })
+            });
         },
         destroy: function(req, res){
-            let usuario = req.session.usuario;
-            const id = req.params.id;
-            usuario.contatos.splice(id, 1);
-            res.redirect('/contatos');
+            const _id = req.session.usuario._id;
+            Usuario.findById(_id, function(erro, usuario){
+                const contatoID = req.params.id;
+                usuario.contatos.id(contatoID).remove();
+                usuarios.save(function(){
+                    res.redirect('/contatos');
+                });
+            });
         }
     }
     return ContatoController;

@@ -13,6 +13,9 @@ const error = require('./middleware/error');
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 const cookie = cookieParser(SECRET); 
+const mongoose = require('mongoose');
+
+global.db = mongoose.connect('mongodb://localhost/ntalk');
 
 // view engine setup
 app.set('views', __dirname + '/views');
