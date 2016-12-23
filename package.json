@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "private": false,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "sh scripts/server.sh",
+    "test": "sh scripts/test.sh"
   },
   "dependencies": {
     "body-parser": "~1.15.1",

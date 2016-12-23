@@ -1,2 +1,2 @@
 export NODE_ENV=development
-nodemon app.js
+nodemon cluster.js

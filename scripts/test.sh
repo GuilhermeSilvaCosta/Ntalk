@@ -1,2 +1,2 @@
 export NODE_ENV=test
-nodemon app.js
+./node_modules/mocha/bin/mocha test/*.js --reporter spec
