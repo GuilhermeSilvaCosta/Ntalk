@@ -1,17 +1,17 @@
 'use strict';
 
-const showEdit = (req, res, acao) =>{
+const showEdit = (req, res, acao, Usuario) =>{
     const _id = req.session.usuario._id;
     Usuario.findById(_id, function(err, usuario){
         const contatoID = req.params.id;
-        const contato = usuario.contatos.id(contatoID);
+        const contato = usuario.contatos.id(contatoID);        
         const resultado = {contato: contato};
         res.render('contatos/'+acao, resultado);
     });
 }
 
 module.exports = function(app){
-    const Usuario = app.models.usuario;
+    const Usuario = app.models.usuario;    
     const ContatoController = {
         index: function(req, res){
             const _id = req.session.usuario._id;
@@ -33,16 +33,16 @@ module.exports = function(app){
             });
         },
         show: function(req, res){
-            showEdit(req, res, 'show');
+            showEdit(req, res, 'show', Usuario);
         },
         edit: function(req, res){
-            showEdit(req, res, 'edit');
+            showEdit(req, res, 'edit', Usuario);
         },
         update: function(req, res){
             const _id = req.session.usuario._id;
             Usuario.findById(_id, function(erro, usuario){
                 const contatoID = req.params.id;
-                const contato = usuarios.contatos.id(contatoID);
+                const contato = usuario.contatos.id(contatoID);
                 contato.nome = req.body.contato.nome;
                 contato.email = req.body.contato.email;
                 usuario.save(function(){
@@ -55,7 +55,7 @@ module.exports = function(app){
             Usuario.findById(_id, function(erro, usuario){
                 const contatoID = req.params.id;
                 usuario.contatos.id(contatoID).remove();
-                usuarios.save(function(){
+                usuario.save(function(){
                     res.redirect('/contatos');
                 });
             });

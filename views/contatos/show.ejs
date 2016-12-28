@@ -2,15 +2,15 @@
 <header>
     <h2>Ntalk - Dados do contato</h2>
 </header>
-<section>
+<section>        
     <form action="/contato/<%- contato._id %>?_method=delete" method="post">
         <p><label for="nome">Nome:</label><%- contato.nome %></p>
         <p><label for="nome">E-mail:</label><%- contato.email %></p>
         <p>
             <button type="submit">Excluir</button>
-            <a href="/contato/<%- id %>/editar">Editar</a>
+            <a href="/contato/<%- contato._id %>/editar">Editar</a>
         </p>
-    </form>
+    </form>    
 </section>
 <% include ../exit %>
 <% include ../footer %>

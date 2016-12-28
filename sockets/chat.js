@@ -2,7 +2,8 @@
 
 module.exports = function(io) {
     const sockets = io.sockets;
-    const redis = require('redis').createClient();
+    const redis_connect = require('../lib/redis_connect');
+    const redis = redis_connect.getClient();
     let crypto = require('crypto')          
     sockets.on('connection', function (client) {    
         const session = client.request.session,
