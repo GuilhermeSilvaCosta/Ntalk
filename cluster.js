@@ -2,6 +2,7 @@ const cluster = require('cluster'),
       cpus = require('os').cpus();
 
 if (cluster.isMaster){
+
     cpus.forEach(function(cpu){
         cluster.fork();
     });

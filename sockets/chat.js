@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = function(io) {
-    const sockets = io.sockets;
+module.exports = function(io) {    
     const redis_connect = require('../lib/redis_connect');
     const redis = redis_connect.getClient();
+    const sockets = io.sockets;
     let crypto = require('crypto')          
     sockets.on('connection', function (client) {    
         const session = client.request.session,
@@ -12,7 +12,7 @@ module.exports = function(io) {
 
         const onlines = Object.keys(sockets.connected);        
         onlines.forEach(function(online){
-            let on = sockets.sockets[online];            
+            let on = sockets.sockets[online];      
             client.emit('notify-onlines', on.email);
             client.broadcast.emit('notify-onlines', on.email);
         });
