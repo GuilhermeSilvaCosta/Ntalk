@@ -5,4 +5,4 @@ dist/
 .DS_Store
 .DS_Store?
 script/
-app.log
+*.log
